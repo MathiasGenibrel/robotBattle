@@ -1,0 +1,46 @@
+.main-navigation {
+  color: var(--text-color);
+  background-color: var(--nav-color);
+  display: flex;
+  flex-direction: column;
+  max-width: 10rem;
+  height: calc(100vh - 4rem);
+  padding-top: 1rem;
+}
+
+.main-navigation li {
+  padding: 1.5rem;
+  position: relative;
+}
+
+.main-navigation li:not(:last-child):after {
+  position: absolute;
+  width: 2rem;
+  content: "";
+  color: transparent;
+  border-bottom: 2px solid var(--secondary-color);
+  border-radius: 1rem;
+  left: 0;
+  right: 0;
+  margin: 1.5rem auto 0;
+}
+
+.main-navigation li a.current-location {
+  opacity: 1;
+}
+
+.main-navigation li a {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  opacity: 0.5;
+}
+
+.main-navigation li a:hover {
+  opacity: 1;
+}
+
+.main-navigation li a svg {
+  font-size: 2rem;
+  margin-bottom: 0.5rem;
+}
