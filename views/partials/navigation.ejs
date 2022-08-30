@@ -1,0 +1,56 @@
+<nav class="main-navigation">
+  <ul>
+    <li>
+      <% if (location === "home") { %>
+      <a href="/" class="current-location">
+        <i class="fa-solid fa-house-user"></i>
+        <p>Home</p>
+      </a>
+      <% } else { %>
+      <a href="/">
+        <i class="fa-solid fa-house-user"></i>
+        <p>Home</p>
+      </a>
+      <% } %>
+    </li>
+    <li>
+      <% if (location === "duel") { %>
+      <a href="/duel" class="current-location">
+        <i class="fa-solid fa-shield-halved"></i>
+        <p>Duel</p>
+      </a>
+      <% } else { %>
+      <a href="/duel">
+        <i class="fa-solid fa-shield-halved"></i>
+        <p>Duel</p>
+      </a>
+      <% } %>
+    </li>
+    <li>
+      <% if (location === "inventory") { %>
+      <a href="/inventory" class="current-location">
+        <i class="fa-solid fa-box-archive"></i>
+        <p>Inventory</p>
+      </a>
+      <% } else { %>
+      <a href="/inventory">
+        <i class="fa-solid fa-box-archive"></i>
+        <p>Inventory</p>
+      </a>
+      <% } %>
+    </li>
+    <li>
+      <% if (location === "shop") { %>
+      <a href="/shop" class="current-location">
+        <i class="fa-solid fa-shop"></i>
+        <p>Shop</p>
+      </a>
+      <% } else { %>
+      <a href="/shop">
+        <i class="fa-solid fa-shop"></i>
+        <p>Shop</p>
+      </a>
+      <% } %>
+    </li>
+  </ul>
+</nav>

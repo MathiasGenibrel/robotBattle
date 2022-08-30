@@ -1,0 +1,35 @@
+<header>
+  <article>
+    <a href="/">
+      <img src="images/logo_transparent.png" alt="logo" preload />
+    </a>
+    <form action="/user" method="get">
+      <label for="searchBar">
+        <input type="text" id="searchBar" placeholder="Search for Player" />
+        <i id="searchIcon" class="fa-solid fa-magnifying-glass"></i>
+      </label>
+    </form>
+  </article>
+  <article>
+    <ul>
+      <li>
+        <% if (badge) { %><i class="fa-solid fa-bell with-badge"></i>
+        <span><%= badge %></span> <% } else { %>
+        <i class="fa-solid fa-bell"></i>
+        <% } %>
+      </li>
+      <li>
+        <i class="fa-solid fa-coins"></i> <%= balance %>
+        <a href="/addCredit">+</a>
+      </li>
+      <li>
+        <a href="/profile">
+          <img
+            src="https://ui-avatars.com/api?name=mithivi"
+            alt="your profile"
+          />
+        </a>
+      </li>
+    </ul>
+  </article>
+</header>
