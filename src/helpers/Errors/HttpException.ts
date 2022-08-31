@@ -3,19 +3,25 @@ import { ErrorModel } from "./Error.models";
 
 // Import interface
 import { IError, IHttpException } from "./Error.types";
+import { Response } from "express";
 
 export class HttpException {
-  currentError: string | Error;
+  private response: Response;
+  private currentError?: Error;
 
-  constructor(error: unknown) {
+  constructor(response: Response, error: unknown) {
+    this.response = response;
     if (error instanceof Error) this.currentError = error;
-    else this.currentError = "Unknown error";
   }
 
   private sendError: IHttpException = (errorType, option) => {
     return new ErrorException(
+      this.response,
       option?.status || ErrorModel[errorType].status,
-      option?.message || ErrorModel[errorType].message,
+      option?.message ||
+        this.currentError?.message ||
+        ErrorModel[errorType].message,
+      this.currentError?.name || ErrorModel[errorType].name,
       option?.model
     ).send(option?.hideError);
   };

@@ -1,15 +1,24 @@
-import { response } from "express";
-
+import { Response } from "express";
 import { config } from "../../config/config";
 
 export class ErrorException {
+  protected response: Response;
   protected status: number;
   protected message: string;
+  protected name: string;
   protected ErrorModel?: object | Error;
 
-  constructor(status: number, message: string, ErrorModel?: object | Error) {
+  constructor(
+    response: Response,
+    status: number,
+    message: string,
+    name: string,
+    ErrorModel?: object | Error
+  ) {
+    this.response = response;
     this.status = status;
     this.message = message;
+    this.name = name;
     this.ErrorModel = ErrorModel;
   }
 
@@ -17,6 +26,7 @@ export class ErrorException {
     console.error({
       status: this.status,
       message: this.message,
+      name: this.name,
       ErrorModel: this.ErrorModel,
     });
   }
@@ -25,8 +35,8 @@ export class ErrorException {
     this.logError();
 
     if (config.environment === "prod" && hideError)
-      return response.status(500).send("Internal Server Error");
+      return this.response.status(500).send("Internal Server Error");
 
-    return response.status(this.status).send(this.message);
+    return this.response.status(this.status).send(this.message);
   }
 }
