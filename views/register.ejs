@@ -1,0 +1,42 @@
+<%- include("./partials/head.ejs", {title: "Register"}) %>
+<main class="user-form-main">
+  <form action="/register" method="post" class="user-form">
+    <h1>Join the Battle</h1>
+    <section>
+      <label for="username">
+        <p>Username :</p>
+        <input type="text" name="username" id="username" required />
+      </label>
+      <label for="email">
+        <p>Email :</p>
+        <input
+          type="email"
+          name="email"
+          id="email"
+          required
+          autocomplete="email"
+          aria-autocomplete="list"
+        />
+      </label>
+      <label for="password">
+        <p>Password :</p>
+        <div>
+          <input
+            type="password"
+            name="password"
+            id="password"
+            required
+            autocomplete="new-password"
+            aria-autocomplete="list"
+          />
+          <i class="fa-solid fa-eye-slash"></i>
+        </div>
+      </label>
+    </section>
+    <button type="submit" class="primary-button">Create an Roboit</button>
+    <p>
+      Already have an Account ?
+      <a href="/login">Logging in</a>
+    </p>
+  </form>
+</main>

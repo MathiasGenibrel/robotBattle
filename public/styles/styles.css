@@ -1,2 +1,6 @@
 @import "./partials/header.css";
 @import "./partials/navigation.css";
+@import "./register.css";
+
+/* Import styles basics components */
+@import "./bases/button.css";

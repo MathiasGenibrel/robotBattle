@@ -1,0 +1,73 @@
+.user-form-main {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.user-form {
+  background-color: var(--text-color);
+  display: flex;
+  flex-direction: column;
+  row-gap: 2rem;
+  max-width: 400px;
+  padding: 2rem;
+  margin: 0 auto;
+  border-radius: 8px;
+}
+
+.user-form > h1 {
+  text-align: center;
+}
+
+.user-form > section {
+  display: flex;
+  flex-direction: column;
+  row-gap: 1rem;
+}
+
+.user-form label input {
+  width: 100%;
+  padding: 0.5rem;
+  outline: none;
+  border: solid 1px #aaa;
+  border-radius: 4px;
+  margin-top: 0.3rem;
+}
+
+.user-form label input:not(:last-child) {
+  border: none;
+}
+
+.user-form label > div {
+  display: flex;
+  align-items: center;
+  column-gap: 0.5rem;
+  border: solid 1px #aaa;
+  border-radius: 4px;
+  padding-right: 0.5rem;
+}
+
+.user-form label > div > svg {
+  cursor: pointer;
+  color: #aaa;
+  transition: color 100ms linear;
+}
+
+.user-form label > div > svg:hover {
+  color: var(--primary-color);
+}
+
+.user-form button {
+  margin: 0 auto;
+}
+
+.user-form > p {
+  text-align: center;
+  font-size: 12px;
+}
+
+.user-form > p > a {
+  color: var(--tertiary-color);
+  font-weight: 900;
+}

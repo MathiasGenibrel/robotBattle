@@ -1,0 +1,31 @@
+<%- include("./partials/head.ejs", {title: "Login"}) %>
+<main class="user-form-main">
+  <form action="/login" method="post" class="user-form">
+    <h1>Connect to the Battle</h1>
+    <section>
+      <label for="username">
+        <p>Username :</p>
+        <input type="text" name="username" id="username" required />
+      </label>
+      <label for="password">
+        <p>Password :</p>
+        <div>
+          <input
+            type="password"
+            name="password"
+            id="password"
+            required
+            autocomplete="new-password"
+            aria-autocomplete="list"
+          />
+          <i class="fa-solid fa-eye-slash"></i>
+        </div>
+      </label>
+    </section>
+    <button type="submit" class="primary-button">Connect to your Roboit</button>
+    <p>
+      Don't have any Account ?
+      <a href="/register">Create an Account</a>
+    </p>
+  </form>
+</main>
