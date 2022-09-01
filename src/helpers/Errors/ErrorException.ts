@@ -1,31 +1,29 @@
-import { Response } from "express";
 import { config } from "../../config/config";
 
+// Import interfaces
+import { Response } from "express";
+import { IErrorConstructor } from "./Error.types";
 export class ErrorException {
   protected response: Response;
   protected status: number;
   protected message: string;
+  protected originalMessage: string;
   protected name: string;
   protected ErrorModel?: object | Error;
 
-  constructor(
-    response: Response,
-    status: number,
-    message: string,
-    name: string,
-    ErrorModel?: object | Error
-  ) {
-    this.response = response;
-    this.status = status;
-    this.message = message;
-    this.name = name;
-    this.ErrorModel = ErrorModel;
+  constructor(builder: IErrorConstructor) {
+    this.response = builder.response;
+    this.status = builder.status;
+    this.message = builder.message;
+    this.originalMessage = builder.originalMessage;
+    this.name = builder.name;
+    this.ErrorModel = builder.ErrorModel;
   }
 
   private logError(): void {
     console.error({
       status: this.status,
-      message: this.message,
+      message: this.originalMessage,
       name: this.name,
       ErrorModel: this.ErrorModel,
     });

@@ -15,15 +15,18 @@ export class HttpException {
   }
 
   private sendError: IHttpException = (errorType, option) => {
-    return new ErrorException(
-      this.response,
-      option?.status || ErrorModel[errorType].status,
-      option?.message ||
+    return new ErrorException({
+      response: this.response,
+      status: option?.status || ErrorModel[errorType].status,
+      message:
+        option?.message ||
         this.currentError?.message ||
-        ErrorModel[errorType].message,
-      this.currentError?.name || ErrorModel[errorType].name,
-      option?.model
-    ).send(option?.hideError);
+        ErrorModel[errorType].message, // Message to display to the client
+      originalMessage:
+        this.currentError?.message || ErrorModel[errorType].message, // Original message
+      name: this.currentError?.name || ErrorModel[errorType].name,
+      ErrorModel: option?.model,
+    }).send(option?.hideError);
   };
 
   public BadRequest: IError = (option) => {

@@ -1,3 +1,5 @@
+import { Response } from "express";
+
 type IOptions = {
   message?: string;
   status?: number;
@@ -14,6 +16,14 @@ type ITypeError =
   | "InternalServerError"
   | "NotImplemented";
 
+export type IErrorConstructor = {
+  response: Response;
+  status: number;
+  message: string;
+  originalMessage: string;
+  name: string;
+  ErrorModel?: object | Error;
+};
 export interface IError {
   (option?: IOptions): void;
 }
