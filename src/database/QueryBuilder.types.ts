@@ -1,5 +1,5 @@
 export type IWhere = {
-  column: string;
+  column: string | string[];
   operator: "=" | "!=" | ">" | "<" | ">=" | "<=" | "BETWEEN" | "LIKE" | "IN";
-  value: string;
+  value: string | string[];
 };
