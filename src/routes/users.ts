@@ -8,8 +8,8 @@ import { Express } from "express";
 const usersRouter = (app: Express) => {
   const router = Router();
 
-  router.get("/register", User.render);
-  router.get("/login", User.render);
+  router.get("/register", AuthValidation.userConnected, User.render);
+  router.get("/login", AuthValidation.userConnected, User.render);
 
   // Post method (Register && Login)
   router.post("/register", AuthValidation.register, User.register);

@@ -32,6 +32,7 @@ export class ErrorException {
   public send(hideError = false) {
     this.logError();
 
+    // Hide error to send to the client if environment is production && hideError parameters is true
     if (config.environment === "prod" && hideError)
       return this.response.status(500).send("Internal Server Error");
 

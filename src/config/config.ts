@@ -4,6 +4,7 @@ dotenv.config({ path: "./src/environment/.env" });
 
 export const config = {
   environment: process.env.NODE_ENV,
+  sessionSecretKey: process.env.SESSION_SECRET_KEY as string,
   database: {
     host: "localhost",
     username: process.env.DB_USERNAME || "root",

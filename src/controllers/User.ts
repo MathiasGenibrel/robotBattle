@@ -35,13 +35,19 @@ class User {
         config.saltRounds
       );
 
-      const result = await Database.create({
+      const [result] = await Database.create({
         table: "users",
         columns: ["username", "email", "password"],
         data: [req.body.username, req.body.email, hashedPassword],
       });
 
       if (result.length === 0) throw new Error("User not created");
+
+      // Add user to session && redirect to main page
+      req.session.user = {
+        username: result.username,
+        id: result.id,
+      };
       res.redirect("/");
     } catch (error) {
       return new HttpException(res, error).InternalServerError();
@@ -59,7 +65,7 @@ class User {
     try {
       const [user] = await Database.find({
         table: "users",
-        columns: ["username", "email", "password"],
+        columns: ["id", "username", "email", "password"],
         where: {
           column: "username",
           operator: "=",
@@ -77,7 +83,11 @@ class User {
 
       if (!correctPassword) throw new Error("Password incorrect");
 
-      // Redirect if users is logged
+      // Add user to session && Redirect if users is logged
+      req.session.user = {
+        username: user.username,
+        id: user.id,
+      };
       res.redirect("/");
     } catch (error) {
       return new HttpException(res, error).BadRequest({
