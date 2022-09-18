@@ -1,0 +1,28 @@
+<%- include("./partials/head.ejs", {title: "Robots"}) %>
+<ul>
+  <li>
+    <a href="/profile">Profile</a>
+  </li>
+  <li>
+    <a href="/shop">Shop</a>
+  </li>
+  <li>
+    <a href="/dual">Duel</a>
+  </li>
+</ul>
+<table>
+  <thead>
+    <tr>
+      <th>Robot</th>
+      <th>Username</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% for (let robot of robots) { %>
+    <tr>
+      <td><%= robot.name %></td>
+      <td><%= robot.username %></td>
+    </tr>
+    <% } %>
+  </tbody>
+</table>

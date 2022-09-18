@@ -4,17 +4,23 @@ import { config } from "../config/config";
 import { IQueryInsert, IQuerySelect } from "./Database.types";
 import { QueryBuilder } from "./QueryBuilder";
 
-// TODO Try to replace with a singleton pattern for the connection to the DB
+let CONNECTION: mysql.Connection | null = null;
 export class Database extends QueryBuilder {
+  /**
+   * Create a new connection to the database if there is no connection.
+   * When the connection is created, the connection is stored in the CONNECTION variable.
+   * @returns {Promise<mysql.Connection>} - Connection to the database
+   */
   private static setConnection = async () => {
-    const connection = await mysql.createConnection({
-      host: config.database.host,
-      user: config.database.username,
-      password: config.database.password,
-      database: config.database.schema,
-    });
+    if (!CONNECTION)
+      CONNECTION = await mysql.createConnection({
+        host: config.database.host,
+        user: config.database.username,
+        password: config.database.password,
+        database: config.database.schema,
+      });
 
-    return connection;
+    return CONNECTION;
   };
 
   public static create = async (option: IQueryInsert) => {
@@ -25,8 +31,6 @@ export class Database extends QueryBuilder {
 
     // Insert Data into database
     const [result] = await connection.execute(query, option.data);
-
-    connection.end();
 
     return result as RowDataPacket[];
   };
@@ -39,8 +43,6 @@ export class Database extends QueryBuilder {
 
     // Insert Data into database
     const [result] = await connection.execute(query);
-
-    connection.end();
 
     return result as RowDataPacket[];
   };

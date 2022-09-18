@@ -8,8 +8,9 @@ import { Express } from "express";
 const usersRouter = (app: Express) => {
   const router = Router();
 
-  router.get("/register", AuthValidation.userConnected, User.render);
-  router.get("/login", AuthValidation.userConnected, User.render);
+  router.get("/register", AuthValidation.userConnected, User.render.register);
+  router.get("/login", AuthValidation.userConnected, User.render.login);
+  router.get("/profile", User.render.profile); // TODO add middleware to check if the user is connected
 
   // Post method (Register && Login)
   router.post("/register", AuthValidation.register, User.register);

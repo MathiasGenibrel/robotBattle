@@ -10,7 +10,7 @@
       "request": "launch",
       "name": "Roboit",
       "skipFiles": ["<node_internals>/**"],
-      "program": "${workspaceFolder}/dist/index.js",
+      "program": "${workspaceFolder}/dist/src/index.js",
       "outFiles": ["${workspaceFolder}/**/*.js"],
       "restart": true,
       "runtimeExecutable": "nodemon"

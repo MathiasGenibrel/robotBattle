@@ -7,18 +7,35 @@ import { config } from "../config/config";
 import { Database } from "../database/Database";
 
 // Import interfaces
-import { IRender, IRegister, ILogin } from "./User.types";
+import { IRender, IResponse } from "./User.types";
 
 class User {
+  private static profile: IResponse = (_req, res) => {
+    // TODO Connect to DB
+    const profile = {
+      username: "Mithivi",
+      email: "",
+      robots: [
+        {
+          name: "R2D2",
+          username: "Mithivi",
+        },
+      ],
+    };
+
+    res.render(`profile.ejs`, { profile });
+  };
+
   /**
    * According to the path, the user is redirected to the login page or the registration page.
    * @param req {Request} Express Request
    * @param res {Response} Express Response
    * @returns {void} Render the page
    */
-  public static render: IRender = (req, res) => {
-    if (req.path === "/register") return res.render(`register.ejs`);
-    return res.render(`login.ejs`);
+  public static render: IRender = {
+    profile: User.profile,
+    login: (_req, res) => res.render(`login.ejs`),
+    register: (_req, res) => res.render(`register.ejs`),
   };
 
   /**
@@ -28,7 +45,7 @@ class User {
    * @param res {Response} Express Response
    * @returns {void} - User account created, logged and redirect to main page
    */
-  public static register: IRegister = async (req, res) => {
+  public static register: IResponse = async (req, res) => {
     try {
       const hashedPassword = await bcrypt.hash(
         req.body.password,
@@ -61,7 +78,7 @@ class User {
    * @param res {Response} Express Response
    * @returns {void} - if user is logged in, redirect to home page with session cookie
    */
-  public static login: ILogin = async (req, res) => {
+  public static login: IResponse = async (req, res) => {
     try {
       const [user] = await Database.find({
         table: "users",
