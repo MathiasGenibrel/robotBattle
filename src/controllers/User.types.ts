@@ -1,13 +1,11 @@
 import { Request, Response } from "express";
 
 export interface IRender {
-  (req: Request, res: Response): void;
+  profile: IResponse;
+  login: IResponse;
+  register: IResponse;
 }
 
-export interface IRegister {
-  (req: Request, res: Response): void;
-}
-
-export interface ILogin {
+export interface IResponse {
   (req: Request, res: Response): void;
 }

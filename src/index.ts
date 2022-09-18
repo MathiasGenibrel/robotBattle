@@ -4,15 +4,15 @@ import session from "express-session";
 // Import default config
 import { config } from "./config/config";
 
+// Import routes
+import routes from "./routes/routes";
+
 // Declare data type for the current session
 declare module "express-session" {
   export interface SessionData {
     user: { username: string; id: number };
   }
 }
-
-// Import routes
-import routes from "./routes/routes";
 
 // Default Setups
 const app = express();
